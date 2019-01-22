@@ -161,6 +161,10 @@ if 'WEBLATE_SOCIAL_AUTH_GITLAB_KEY' in os.environ:
     AUTHENTICATION_BACKENDS += ('social_core.backends.gitlab.GitLabOAuth2',)
     SOCIAL_AUTH_GITLAB_SCOPE = ['api']
 
+if 'WEBLATE_SOCIAL_AUTH_AUTH0_KEY' in os.environ:
+    AUTHENTICATION_BACKENDS += ('social_core.backends.auth0.Auth0OAuth2',)
+    SOCIAL_AUTH_AUTH0_SCOPE = ['openid', 'profile']
+
 # Azure
 if 'WEBLATE_SOCIAL_AUTH_AZUREAD_OAUTH2_KEY' in os.environ:
     AUTHENTICATION_BACKENDS += ('social_core.backends.azuread.AzureADOAuth2',)
