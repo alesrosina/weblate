@@ -143,6 +143,9 @@ if os.environ.get('WEBLATE_REQUIRE_LOGIN', '0') == '1':
 
 # Enable possibility of using other auth providers via configuration
 
+# Authentication configuration
+AUTHENTICATION_BACKENDS = ()
+
 if 'WEBLATE_SOCIAL_AUTH_BITBUCKET_KEY' in os.environ:
     AUTHENTICATION_BACKENDS += (
       'social_core.backends.bitbucket.BitbucketOAuth',
