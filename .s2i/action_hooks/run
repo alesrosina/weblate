@@ -36,6 +36,26 @@ if [ x"$MOD_WSGI_ACCESS_LOG" != x"" ]; then
     ARGS="$ARGS --access-log"
 fi
 
+# Due to some operations taking quite some long in Weblate,
+# like importing bigger porjects, default timeout of 30 seconds
+# is increased
+ARGS="$ARGS --socket-timeout 21600" # in seconds, so 6 hours
+ARGS="$ARGS --queue-timeout 21600"
+ARGS="$ARGS --request-timeout 21600"
+ARGS="$ARGS --connect-timeout 21600"
+ARGS="$ARGS --header-timeout 21600"
+ARGS="$ARGS --startup-timeout 21600"
+ARGS="$ARGS --shutdown-timeout 21600"
+ARGS="$ARGS --graceful-timeout 21600"
+ARGS="$ARGS --body-timeout 21600"
+ARGS="$ARGS --response-socket-timeout 21600"
+ARGS="$ARGS --deadlock-timeout 21600"
+ARGS="$ARGS --inactivity-timeout 21600"
+# max needs to be bigger than above timeouts 10 hours
+ARGS="$ARGS --header-max-timeout 36000"
+ARGS="$ARGS --access-log"
+ARGS="$ARGS --log-level info"
+
 # Trust the proxy headers sent by the router for the remote client.
 
 ARGS="$ARGS --trust-proxy-header X-Forwarded-For"
